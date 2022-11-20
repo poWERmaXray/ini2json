@@ -1,6 +1,7 @@
 package ray.utils.reader;
 
 import java.lang.reflect.Field;
+import java.nio.file.Path;
 
 /**
 * @ClassName : FileReader
@@ -9,7 +10,7 @@ import java.lang.reflect.Field;
 * @Date: 2022/11/17 21:05
 */
 public abstract class FileReader<OutputType> {
-    public abstract OutputType readFile();
+    public abstract OutputType readFile(Path path);
 
     protected abstract Field[] getBeanProperties(Object object);
 
