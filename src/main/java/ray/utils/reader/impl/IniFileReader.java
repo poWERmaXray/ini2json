@@ -49,6 +49,33 @@ public class IniFileReader<OutputType> extends FileReader<OutputType> {
     }
 
     /**
+     * 进行字符串截取处理
+     * @param readline 行字符
+     * @param param 要截取的对应的属性
+     * @param aimInject 目标注入对象
+     * @return 截取后的行
+     */
+    @Override
+    protected String getFieldProperty(String readline, Field param, OutputType aimInject) {
+        String paramName = param.getName();
+        int length = paramName.length() + 1; // +1 -> param=
+
+        if (!readline.contains(paramName)){
+            return null;
+        }
+
+        String stringValue = readline.substring(readline.indexOf(paramName));
+
+        if (stringValue.startsWith("(")){
+            //TODO:pojo类型的field
+        }
+
+
+
+        return "";
+    }
+
+    /**
      * 进行属性注入的方法
      * 根据成员属性，在行内容readline中查找字段进行匹配，并注入到目标对象中
      * @param fields 注入对象的成员属性信息
@@ -58,7 +85,11 @@ public class IniFileReader<OutputType> extends FileReader<OutputType> {
      */
     @Override
     protected OutputType setProperties(Field[] fields, OutputType aimInject, String readline) {
-
+        for (Field field : fields) {
+            if (readline.contains(field.getName())){
+                getFieldProperty(readline,field,aimInject);
+            }
+        }
         return null;
     }
 

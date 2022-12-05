@@ -14,5 +14,7 @@ public abstract class FileReader<OutputType> {
 
     protected abstract Field[] getBeanProperties(Object object);
 
+    protected abstract String getFieldProperty(String readline, Field param, OutputType aimInject);
+
     protected abstract OutputType setProperties(Field[] fields, OutputType aimInject, String readline);
 }
