@@ -9,12 +9,6 @@ import java.nio.file.Path;
 * @Author : poWERmaXRay
 * @Date: 2022/11/17 21:05
 */
-public abstract class FileReader<OutputType> {
-    public abstract OutputType readFile(Path path);
-
-    protected abstract Field[] getBeanProperties(Object object);
-
-    protected abstract String getFieldProperty(String readline, Field param, OutputType aimInject);
-
-    protected abstract OutputType setProperties(Field[] fields, OutputType aimInject, String readline);
+public interface FileReader<OutputType> {
+    public OutputType readFile(Path path);
 }
