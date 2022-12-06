@@ -48,4 +48,9 @@ public class Pair {
     public String getKeyAndValue(){
         return key + value;
     }
+
+    public void clean() {
+        setKey(null);
+        setValue(null);
+    }
 }

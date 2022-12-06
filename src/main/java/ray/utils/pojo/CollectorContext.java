@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Field;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -15,28 +16,38 @@ import java.util.List;
 @Component
 public class CollectorContext {
 
-    private Field param;
+    private Field[] params;
     private List<String> lines;
     @Autowired
     private Pair message;
     private String currentLine;
+    private Object injectInstance;
 
     @Override
     public String toString() {
         return "CollectorContext{" +
-                "param=" + param +
+                "params=" + Arrays.toString(params) +
                 ", lines=" + lines +
                 ", message=" + message +
                 ", currentLine='" + currentLine + '\'' +
+                ", injectInstance=" + injectInstance +
                 '}';
     }
 
-    public Field getParam() {
-        return param;
+    public void setParams(Field[] params) {
+        this.params = params;
     }
 
-    public void setParam(Field param) {
-        this.param = param;
+    public void setInjectInstance(Object injectInstance) {
+        this.injectInstance = injectInstance;
+    }
+
+    public Field[] getParams() {
+        return params;
+    }
+
+    public void setParam(Field[] param) {
+        this.params = param;
     }
 
     public List<String> getLines() {
@@ -61,5 +72,9 @@ public class CollectorContext {
 
     public void setCurrentLine(String currentLine) {
         this.currentLine = currentLine;
+    }
+
+    public Object getInjectInstance() {
+        return injectInstance;
     }
 }
